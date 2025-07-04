@@ -1,0 +1,75 @@
+{
+  "name": "FC Barcelona Home '16-17",
+  "team": "FC Barcelona",
+  "league": "La Liga",
+  "country": "Spain",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item1.jpg",
+  "price": 29.99,
+  "stock": 12,
+  "description": "Official FC Barcelona home kit from the 2016-17 season.",
+  "dateAdded": "2024-06-30T12:34:56.789Z"
+}
+
+
+{
+  "name": "Real Madrid Home '13-14",
+  "team": "Real Madrid",
+  "league": "La Liga",
+  "country": "Spain",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item1.jpg",
+  "price": 29.99,
+  "stock": 12,
+  "description": "Official Real Madrid home kit from the 2014-14 season.",
+  "dateAdded": "2024-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "Liverpool Home '24-25",
+  "team": "Liverpool",
+  "league": "Premier League",
+  "country": "England",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item1.jpg",
+  "price": 29.99,
+  "stock": 12,
+  "description": "Official Liverpool FC home kit from the 2024-25 season.",
+  "dateAdded": "2024-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "Manchester City Home '22-23",
+  "team": "Manchester City",
+  "league": "Premier League",
+  "country": "England",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item1.jpg",
+  "price": 29.99,
+  "stock": 12,
+  "description": "Official Manchester City FC home kit from the 2022-23 season.",
+  "dateAdded": "2024-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "Paris Saint Germain Home '24-25",
+  "team": "Paris Saint Germain",
+  "league": "Ligue 1",
+  "country": "France",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item1.jpg",
+  "price": 29.99,
+  "stock": 12,
+  "description": "Official PSG home kit from the 2024-25 season.",
+  "dateAdded": "2024-06-30T12:34:56.789Z"
+}
+
+
+
+
+

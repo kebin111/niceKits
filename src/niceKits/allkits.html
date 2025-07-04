@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <img src="images/logo1.png" alt="Logo" width="50" height="50" />
+    <h1>NiceKits</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="newarrive.html ">New Arrivals</a></li>
+        <li><a href="allkits.html">All Kits</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+  <div class="ak-header">
+    <section>
+        <input type="text" id="search-bar" placeholder="search kits...">
+        <button id="search-button">search</button>
+        <h2>All Kits</h2>
+        <div class="ak-details-holder">
+            <h3>sort by:</h3>
+            <div class="ak-dropdown">
+            <select class="ak-dropbtn" id="ak-dropdownButton">
+              <option value="">select...</option>
+              <option value="a to z">a to z</option>
+              <option value="z to a">z to a</option>
+            </select>
+            <div class="ak-dropdown-content">
+               <a href="#" data-value="A to Z">A to Z</a> <!--change data value -->
+              <a href="#" data-value="Z to A">Z to A</a>
+            </div>
+          </div>    
+
+        </div>
+    </section>
+  
+  <div class="ak-item-group">
+    <div class="ak-item">
+        <img src="images/item1.jpg" alt="item1" width="200" height="200" />
+        <h4>FC Barcelona Home '16-17</h4>
+    </div>
+    <div class="ak-item">
+        <img src="images/item1.jpg" alt="item1" width="200" height="200" />
+        <h4>FC Barcelona Home '16-17</h4>
+    </div>
+    <div class="ak-item">
+        <img src="images/item1.jpg" alt="item1" width="200" height="200" />
+        <h4>FC Barcelona Home '16-17</h4>
+    </div>
+    <div class="ak-item">
+        <img src="images/item1.jpg" alt="item1" width="200" height="200" />
+        <h4>FC Barcelona Home '16-17</h4>
+    </div>
+  </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+  </footer>
+  <!-- <script>
+        document.addEventListener('DOMContentLoaded', () => {
+      const sortDropdown = document.getElementById('ak-dropdownButton');
+      if (sortDropdown) {
+        console.log('Sort dropdown found');
+        sortDropdown.addEventListener('change', function () {
+          const sortValue = this.value;
+          console.log('Sort value:', sortValue);
+        });
+      }
+    });
+  </script> -->
+  <script src="script.js"></script>   
+
+
+
+</body>   
+</html>

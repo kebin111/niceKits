@@ -1,0 +1,669 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background-color: #000000;
+  color: #333;
+}
+
+header {
+    background: #000000;
+  color: #fff;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+header2 {
+  background: #000000;
+  color: #fff;
+  padding-top: 2em;
+  padding-left: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+
+.view-na-btn {
+  background-color: #ffcc00;
+  color: white;
+  border: none;
+  padding: 0.75em 0.75em;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.view-na-btn:hover {
+  background-color: #ff4c4c;
+  transform: translateY(-2px);
+}
+
+.vnb {
+    padding-top: 1em;
+
+}
+
+nav {
+  display: flex;
+  justify-content: center; /* Center nav links horizontally */
+  width: 75%;
+  
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1em;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  background: #000000;
+  color:#f4f4f4;
+  padding: 2em;
+  text-align: center;
+}
+
+footer {
+  background: #00095d;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.hero-slider {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  color: white;
+  padding: 2em;
+  padding-top: 2em;
+  background: rgba(0, 0, 0, 0.4); /* optional dark overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+.fade-top,
+.fade-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.fade-top {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.fade-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+
+.item-group-1 {
+    padding-top: 2em;
+    display: flex;
+    justify-content: center;     /* center the cards */
+    gap: 1rem;                 /* space between cards */
+    margin-top: 2rem;            /* optional spacing above */
+    flex-wrap: wrap;             /* wrap on smaller screens */
+    margin-right: 4rem;
+    margin-left: 4rem;
+    
+}
+.item-holder {
+    padding-top: 2em;
+    background: #f4f4f4;
+    color: #000000;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+  
+    border-radius: 12px; /* 👈 this adds the rounded corners */
+}
+
+.item-holder:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.player-select{
+  padding-top: 2em;
+  background: #000000;
+  color: #f4f4f4;
+  text-align: center;
+  justify-content: center;
+  gap: 1em;
+
+}
+.player-group{
+    display: flex;
+    justify-content: center;     /* center the cards */
+    gap: 1.5rem;                 /* space between cards */
+    margin-top: 2rem;            /* optional spacing above */
+    flex-wrap: wrap;             /* wrap on smaller screens */
+}
+
+.player-holder{
+  background: #f4f4f4;
+  color: #000000;
+  height: 120px;  
+  width: 120px;
+  border-radius: 100px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 7px;
+  overflow: hidden;
+}
+
+.player-holder:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.player-holder section{
+  text-align: center;
+}
+
+.player-link {
+  text-decoration: none;
+}
+
+.player-kit-header{
+  background-color: #000000;
+  color: #f4f4f4;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  flex-direction: column; 
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.player-kit-header section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.p-item-group-1 {
+    padding-top: 2em;
+    display: flex;
+    justify-content: center;     /* center the cards */
+    gap: 1rem;                 /* space between cards */
+    margin-top: 2rem;            /* optional spacing above */
+    flex-wrap: wrap;             /* wrap on smaller screens */
+    margin-right: 4rem;
+    margin-left: 4rem;
+}
+.p-item-holder {
+    padding-top: 2em;
+    background: #f4f4f4;
+    color: #000000;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    border-radius: 12px; /* 👈 this adds the rounded corners */
+}
+
+.p-item-holder:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+
+.na-header{
+  background-color: #000000;
+  color: #f4f4f4;
+  padding:2em;  
+  display: flex;
+  flex-direction: column; 
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+
+.new-arrival-item-group {
+    padding-top: 2em;
+    display: flex;
+    justify-content: center;     /* center the cards */
+    gap: 1rem;                 /* space between cards */
+    margin-top: 2rem;            /* optional spacing above */
+    flex-wrap: wrap;             /* wrap on smaller screens */
+    margin-right: 4rem;
+    margin-left: 4rem;
+}
+.new-arrival-item {
+    padding-top: 2em;
+    background: #f4f4f4;
+    color: #000000;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    border-radius: 12px; /* 👈 this adds the rounded corners */
+}
+
+.new-arrival-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.kit-header{
+  display: flex;
+  background-color: #000000;
+  color:#f4f4f4;
+  gap: 1.5rem;
+  margin-left: 35rem;
+  margin-right: 15rem;
+}
+
+.item-assets{
+  display: flex;
+  padding-top: 2em;
+  
+}
+
+.size-holder{
+  background-color: #000000;
+  min-width: 250px;
+}
+
+.addon-holder{
+  background-color: #000000;
+    min-width: 250px;
+  }
+
+.atc-holder{
+  padding-top: 1em;
+  background-color: #000000;
+ min-width: 250px;
+}
+
+.atc-btn {
+  background-color: #ffcc00;
+  color: white;
+  border: none;
+  padding: 0.75em 0.75em;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.atc-btn:hover {
+  background-color: #ff4c4c;
+  transform: translateY(-2px);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 0.5em 1em;
+  border: 1px solid white;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #000;
+  padding: 0.75em 1em;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+
+.ak-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.ak-dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 0.5em 1em;
+  border: 1px solid white;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.ak-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.ak-dropdown-content a {
+  color: #000;
+  padding: 0.75em 1em;
+  text-decoration: none;
+  display: block;
+} 
+
+/* .ak-dropdown:hover .ak-dropdown-content {
+  display: block;
+}
+
+.ak-dropdown-content a:hover {
+  background-color: #f1f1f1;
+} */
+
+.c-hero-slider {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  
+}
+
+.c-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.c-slide.active {
+  opacity: 1;
+}
+
+.c-slide-content {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.c-slide-content.active {
+  display: flex;
+}
+
+.c-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.c-arrow.left {
+  left: 10px;
+}
+
+.c-arrow.right {
+  right: 10px;
+}
+
+.c-fade-top,
+.c-fade-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.c-fade-top {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.c-fade-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+
+.c-view-na-btn {
+  background-color: #ffcc00;
+  color: white;
+  border: none;
+  padding: 0.75em 0.75em;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.c-view-na-btn:hover {
+  background-color: #ff4c4c;
+  transform: translateY(-2px);
+}
+
+.c-vnb {
+    padding-top: 1em;
+
+}
+
+.c-item-group-1 {
+    padding-top: 2em;
+    display: flex;
+    justify-content: center;     /* center the cards */
+    gap: 1rem;                 /* space between cards */
+    margin-top: 2rem;            /* optional spacing above */
+    flex-wrap: wrap;             /* wrap on smaller screens */
+    margin-right: 4rem;
+    margin-left: 4rem;
+}
+.c-item-holder {
+    padding-top: 2em;
+    background: #f4f4f4;
+    color: #000000;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    border-radius: 12px; /* 👈 this adds the rounded corners */
+}
+
+.c-item-holder:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.ak-header{
+  background-color: #000000;
+  color: #f4f4f4;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  flex-direction: column; 
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+
+.ak-header section{ 
+  width: 100%
+}
+
+.ak-header input{
+  padding: 0.5em 1em;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  font-family: Poppins, sans-serif;
+  min-width: 500px;
+}
+
+
+.ak-header button{
+  padding: 0.5em 1em;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-family: Poppins, sans-serif;
+  transition: background-color 0.3s;
+}
+
+.ak-header button:hover{
+  background-color: #333;
+}
+
+.ak-item-group {
+    padding-top: 2em;
+    display: flex;
+    justify-content: center;     /* center the cards */
+    gap: 1rem;                 /* space between cards */
+    margin-top: 2rem;            /* optional spacing above */
+    flex-wrap: wrap;             /* wrap on smaller screens */
+    margin-right: 4rem;
+    margin-left: 4rem;
+}
+.ak-item {
+    padding-top: 2em;
+    background: #f4f4f4;
+    color: #000000;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    border-radius: 12px; /* 👈 this adds the rounded corners */
+}
+
+.new-arrival-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.ak-details-holder{ 
+  display: flex;
+  gap: 0.5em;
+}
+
+.ak-details-holder button{
+  padding: 0.25em 1em;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 20px 20px 20px 20px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-family: Poppins, sans-serif;
+  transition: background-color 0.3s;
+}

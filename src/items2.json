@@ -1,0 +1,71 @@
+{
+  "name": "Arsenal Home '24-25",
+  "team": "Arsenal",
+  "league": "Premier League",
+  "country": "England",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item8.jpg",
+  "price": 29.99,
+  "stock": 15,
+  "description": "Official Arsenal FC home kit for the 2024-25 season.",
+  "dateAdded": "2025-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "Juventus Home '24-25",
+  "team": "Juventus",
+  "league": "Serie A",
+  "country": "Italy",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item9.jpg",
+  "price": 29.99,
+  "stock": 10,
+  "description": "Official Juventus home kit for the 2024-25 season.",
+  "dateAdded": "2025-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "Bayern Munich Home '24-25",
+  "team": "Bayern Munich",
+  "league": "Bundesliga",
+  "country": "Germany",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item10.jpg",
+  "price": 29.99,
+  "stock": 8,
+  "description": "Official Bayern Munich home kit for the 2024-25 season.",
+  "dateAdded": "2025-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "AC Milan Home '24-25",
+  "team": "AC Milan",
+  "league": "Serie A",
+  "country": "Italy",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item11.jpg",
+  "price": 29.99,
+  "stock": 12,
+  "description": "Official AC Milan home kit for the 2024-25 season.",
+  "dateAdded": "2025-06-30T12:34:56.789Z"
+}
+
+{
+  "name": "Inter Milan Home '24-25",
+  "team": "Inter Milan",
+  "league": "Serie A",
+  "country": "Italy",
+  "category": "Club",
+  "jerseyType": "Home",
+  "image": "images/item12.jpg",
+  "price": 29.99,
+  "stock": 14,
+  "description": "Official Inter Milan home kit for the 2024-25 season.",
+  "dateAdded": "2025-06-30T12:34:56.789Z"
+}
+
+
