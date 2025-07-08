@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i === index) slide.classList.add('active');
     });
   }
+  
 
   if (slides.length > 0) {
     document.querySelector('.arrow.left').addEventListener('click', () => {
@@ -32,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // COLLECTIONS PAGE SLIDER
   let c_currentSlide = 0;
   const c_slides = document.querySelectorAll('.c-slide');
+  const c_slideContent = document.querySelectorAll('.c-slide-content');
+  const c_viewBtn = document.querySelectorAll('.c-view-na-btn');
   const c_totalSlides = c_slides.length;
   const c_intervalTime = 5000;
 
@@ -42,23 +45,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   }
+  function c_showSlideContent(c_index) {
+    c_slideContent.forEach((c_slideContent, j) => {
+      c_slideContent.classList.remove('active');
+      if (j === c_index) c_slideContent.classList.add('active');
+    });
+  }
+  function c_showButton(c_index){
+    c_viewBtn.forEach((c_viewBtn, j) => {
+      c_viewBtn.classList.remove('active');
+      if (j === c_index) c_viewBtn.classList.add('active'); 
+    });
+  }
+
+  function isActive(c_index){
+    if(c_viewBtn.classList.contains('active')){
+      console.log("c_viewBtn is active");
+    }
+    else{
+      console.log("c_viewBtn is not active");
+    }
+  }
 
   if (c_slides.length > 0) {
     document.querySelector('.c-arrow.left').addEventListener('click', () => {
       c_currentSlide = (c_currentSlide - 1 + c_totalSlides) % c_totalSlides;
       c_showSlide(c_currentSlide);
+      c_showSlideContent(c_currentSlide);
+      c_showButton(c_currentSlide);
+      
     });
 
     document.querySelector('.c-arrow.right').addEventListener('click', () => {
       c_currentSlide = (c_currentSlide + 1) % c_totalSlides;
       c_showSlide(c_currentSlide);
+      c_showSlideContent(c_currentSlide);
+      c_showButton(c_currentSlide);
     });
 
     setInterval(() => {
       c_currentSlide = (c_currentSlide + 1) % c_totalSlides;
       c_showSlide(c_currentSlide);
+      c_showSlideContent(c_currentSlide);
+      c_showButton(c_currentSlide);
     }, c_intervalTime);
   }
+
+function fetchCollection(cButtonContent){{
+  fetch(`/api/collections?category=${cButtonContent}`)
+  .then(response => response.json())
+  .then(kitcollections => {
+    console.log("data", kitcollections);
+  })
+  .catch(error => {
+    console.error("Error fetching collections:", error);
+  });
+}
 
   // COLLECTIONS PAGE BUTTONS
   const mainContent = document.getElementById("c-main-content");
@@ -70,31 +112,80 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (cViewBtn.length > 0) {
     console.log("Buttons found:", cViewBtn.length);
-    cViewBtn.forEach(button => {
+    cViewBtn.forEach((button, index) => {
+      // Capture the button category immediately
+      const buttonCategory = button.getAttribute('data-category');
+      
       button.addEventListener("click", () => {
         alert("Clicked!");
-          console.log("buttonclick"); 
-      mainContent.innerHTML = `<section>
-          <h2>club kits 🔥</h2>
-          <p> premier league, la liga and many more!</p>
-        </section>
-        <div class="c-item-group-1">
-            <a href="samplekit.html" class="item-link">
-            <div class="c-item-holder">
-            <img src="images/ronaldo.png" alt="item1" width="200" height="200" />
-            <h4>FC Barcelona Home '16-17</h4>
-            </div>
-            </a>
-            <div class="c-item-holder">
-                <img src="images/item2.jpg" alt="item1" width="200" height="200" />
-            <h4>Manchester United Home '07-08</h4>
-            </div>
-            <div class="c-item-holder">
-                <img src="images/item3.jpg" alt="item1" width="200" height="200" />
-            <h4>Real Madrid Away '16-17</h4>
-            </div>
-        </div> 
-        `;
+        const cButtonContent = buttonCategory;
+        console.log("button", button);
+        console.log("buttonclick", cButtonContent); 
+        
+        // Handle different button categories
+        if (cButtonContent === 'clubs') {
+          mainContent.innerHTML = `<section>
+              <h2>club kits 🔥</h2>
+              <p>premier league, la liga and many more!</p>
+            </section>
+            <div class="c-item-group-1">
+                <a href="samplekit.html" class="item-link">
+                <div class="c-item-holder">
+                <img src="images/ronaldo.png" alt="item1" width="200" height="200" />
+                <h4>FC Barcelona Home '16-17</h4>
+                </div>
+                </a>
+                <div class="c-item-holder">
+                    <img src="images/item2.jpg" alt="item2" width="200" height="200" />
+                <h4>Manchester United Home '07-08</h4>
+                </div>
+                <div class="c-item-holder">
+                    <img src="images/item3.jpg" alt="item3" width="200" height="200" />
+                <h4>Real Madrid Away '16-17</h4>
+                </div>
+            </div> 
+            `;
+        } else if (cButtonContent === 'national') {
+          mainContent.innerHTML = `<section>
+              <h2>national team kits 🌍</h2>
+              <p>represent your country with pride!</p>
+            </section>
+            <div class="c-item-group-1">
+                <div class="c-item-holder">
+                <img src="images/item4.jpg" alt="item4" width="200" height="200" />
+                <h4>Brazil Home '22-23</h4>
+                </div>
+                <div class="c-item-holder">
+                    <img src="images/item5.jpg" alt="item5" width="200" height="200" />
+                <h4>Argentina Away '22-23</h4>
+                </div>
+                <div class="c-item-holder">
+                    <img src="images/item6.jpg" alt="item6" width="200" height="200" />
+                <h4>France Home '22-23</h4>
+                </div>
+            </div> 
+            `;
+        } else if (cButtonContent === 'limited') {
+          mainContent.innerHTML = `<section>
+              <h2>limited edition kits ⭐</h2>
+              <p>exclusive and rare collections!</p>
+            </section>
+            <div class="c-item-group-1">
+                <div class="c-item-holder">
+                <img src="images/item7.jpg" alt="item7" width="200" height="200" />
+                <h4>Nike x Off-White Collab</h4>
+                </div>
+                <div class="c-item-holder">
+                    <img src="images/item8.jpg" alt="item8" width="200" height="200" />
+                <h4>Adidas x Palace Limited</h4>
+                </div>
+                <div class="c-item-holder">
+                    <img src="images/item9.jpg" alt="item9" width="200" height="200" />
+                <h4>Puma x Balmain Special</h4>
+                </div>
+            </div> 
+            `;
+        }
       });
     });
   } else {
@@ -355,6 +446,22 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('Search input is empty');
     }
     }
+
+    // COLLECTIONS FUNCTIONALITY
+    // document.getElementById('c-view-na-btn').addEventListener('click', function() {
+    //   const cButtonContent = document.getElementById('c-view-na-btn').value;
+    //   console.log('Collection button content:', cButtonContent);
+
+    //   if(cButtonContent === 'clubs'){
+    //     console.log('Clubs button clicked');
+    //   }
+    //   else if(cButtonContent === 'national'){
+    //     console.log('National button clicked');
+    //   }
+    //   else if(cButtonContent === 'limited'){
+    //     console.log('Limited button clicked');
+    //   }else{}
+    // });
 
   
 

@@ -467,14 +467,17 @@ footer {
   opacity: 0;
   transition: opacity 1s ease-in-out;
   z-index: 0;
+  pointer-events: none;
 }
 
 .c-slide.active {
   opacity: 1;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .c-slide-content {
-  display: none;
+  opacity: 0;
   position: absolute;
   top: 0; left: 0;
   height: 100%;
@@ -486,10 +489,15 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: center;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .c-slide-content.active {
-  display: flex;
+ opacity: 1;
+ z-index: 1;
+ pointer-events: auto;
 }
 
 .c-arrow {
@@ -544,17 +552,34 @@ footer {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+  pointer-events: auto;
 }
 
-.c-view-na-btn:hover {
+.c-view-na-btn.active {
+  opacity: 1;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* .c-view-na-btn.active:hover {
   background-color: #ff4c4c;
   transform: translateY(-2px);
-}
+} */
 
-.c-vnb {
-    padding-top: 1em;
 
-}
+/* Ensure hover works on active slide buttons */
+/* .c-slide.active .c-view-na-btn:hover {
+  background-color: #ff4c4c;
+  transform: translateY(-2px);
+} */
+
+/* .c-slide-content.active .c-view-na-btn:hover {
+  background-color: #ff4c4c;
+  transform: translateY(-2px);
+} */
 
 .c-item-group-1 {
     padding-top: 2em;
