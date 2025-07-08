@@ -90,16 +90,52 @@ document.addEventListener("DOMContentLoaded", () => {
       c_showButton(c_currentSlide);
     }, c_intervalTime);
   }
-
+function updateSection(cButtonContent){
+  const c_section_h2 = document.querySelector('#c-main-content section h2');
+  const c_section_p = document.querySelector('#c-main-content section p');
+  
+  if(cButtonContent === 'Club'){
+    c_section_h2.textContent = 'Club Kits 🔥';
+    c_section_p.textContent = 'Jerseys from your favorite clubs';
+  }
+  else if(cButtonContent === 'National'){
+    c_section_h2.textContent = 'National Team Kits 🌍';
+    c_section_p.textContent = 'Jerseys from your favorite national teams';
+  }
+  else if(cButtonContent === 'Limited'){
+    c_section_h2.textContent = 'Limited Edition Kits ⭐';
+    c_section_p.textContent = 'Exclusive and rare collections';
+  }
+}
 function fetchCollection(cButtonContent){{
-  fetch(`/api/collections?category=${cButtonContent}`)
+  fetch(`/api/collections?category=${encodeURIComponent(cButtonContent)}`)
   .then(response => response.json())
-  .then(kitcollections => {
-    console.log("data", kitcollections);
-  })
-  .catch(error => {
-    console.error("Error fetching collections:", error);
-  });
+  .then(kitCollections => {
+    console.log("data", kitCollections);
+    updateSection(cButtonContent);
+    const c_itemGroup = document.querySelector('.c-item-group-1');
+    c_itemGroup.innerHTML = '';
+    if(kitCollections.length === 0){
+      c_itemGroup.innerHTML = '<p>No kits available</p>';
+      return;
+    }
+    kitCollections.forEach(kit => {
+      const link = document.createElement('a');
+      link.href = `kit-info.html?id=${kit._id}`;
+      link.className = 'item-link';
+      link.innerHTML = `
+      <div class="c-item-holder">
+      <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
+      <h4>${kit.name}</h4>
+      </div>
+      `;
+      c_itemGroup.appendChild(link);
+    });
+    })
+    .catch(error => {
+      console.error("Error fetching collections:", error);
+    });
+  }
 }
 
   // COLLECTIONS PAGE BUTTONS
@@ -121,71 +157,9 @@ function fetchCollection(cButtonContent){{
         const cButtonContent = buttonCategory;
         console.log("button", button);
         console.log("buttonclick", cButtonContent); 
-        
+        fetchCollection(cButtonContent);
         // Handle different button categories
-        if (cButtonContent === 'clubs') {
-          mainContent.innerHTML = `<section>
-              <h2>club kits 🔥</h2>
-              <p>premier league, la liga and many more!</p>
-            </section>
-            <div class="c-item-group-1">
-                <a href="samplekit.html" class="item-link">
-                <div class="c-item-holder">
-                <img src="images/ronaldo.png" alt="item1" width="200" height="200" />
-                <h4>FC Barcelona Home '16-17</h4>
-                </div>
-                </a>
-                <div class="c-item-holder">
-                    <img src="images/item2.jpg" alt="item2" width="200" height="200" />
-                <h4>Manchester United Home '07-08</h4>
-                </div>
-                <div class="c-item-holder">
-                    <img src="images/item3.jpg" alt="item3" width="200" height="200" />
-                <h4>Real Madrid Away '16-17</h4>
-                </div>
-            </div> 
-            `;
-        } else if (cButtonContent === 'national') {
-          mainContent.innerHTML = `<section>
-              <h2>national team kits 🌍</h2>
-              <p>represent your country with pride!</p>
-            </section>
-            <div class="c-item-group-1">
-                <div class="c-item-holder">
-                <img src="images/item4.jpg" alt="item4" width="200" height="200" />
-                <h4>Brazil Home '22-23</h4>
-                </div>
-                <div class="c-item-holder">
-                    <img src="images/item5.jpg" alt="item5" width="200" height="200" />
-                <h4>Argentina Away '22-23</h4>
-                </div>
-                <div class="c-item-holder">
-                    <img src="images/item6.jpg" alt="item6" width="200" height="200" />
-                <h4>France Home '22-23</h4>
-                </div>
-            </div> 
-            `;
-        } else if (cButtonContent === 'limited') {
-          mainContent.innerHTML = `<section>
-              <h2>limited edition kits ⭐</h2>
-              <p>exclusive and rare collections!</p>
-            </section>
-            <div class="c-item-group-1">
-                <div class="c-item-holder">
-                <img src="images/item7.jpg" alt="item7" width="200" height="200" />
-                <h4>Nike x Off-White Collab</h4>
-                </div>
-                <div class="c-item-holder">
-                    <img src="images/item8.jpg" alt="item8" width="200" height="200" />
-                <h4>Adidas x Palace Limited</h4>
-                </div>
-                <div class="c-item-holder">
-                    <img src="images/item9.jpg" alt="item9" width="200" height="200" />
-                <h4>Puma x Balmain Special</h4>
-                </div>
-            </div> 
-            `;
-        }
+       
       });
     });
   } else {

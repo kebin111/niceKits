@@ -146,6 +146,18 @@ app.get('/api/search-kits', async (req, res) =>{
     }
 });
 
+app.get('/api/collections', async (req, res) =>{
+    try{
+        const category = req.query.category;
+        console.log('Fetching kits for category:', category);
+        const kits = await Kit.find({category: category});
+        console.log('Kits fetched:', kits.length);
+        res.json(kits);
+    }catch(error){
+        console.error('Error fetching kits:', error);   
+        res.status(500).json({message: error.message});
+    }
+});
 app.post('/home', async (req, res) =>{
 
 
