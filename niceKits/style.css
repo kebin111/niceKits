@@ -259,6 +259,8 @@ footer {
   text-align: center;
 }
 
+
+
 .p-item-group-1 {
     padding-top: 2em;
     display: flex;
@@ -333,10 +335,16 @@ footer {
   margin-right: 15rem;
 }
 
+
+
 .item-assets{
   display: flex;
   padding-top: 2em;
-  
+  padding-bottom: 2em;
+}
+
+.kit-description p{
+  font-size: 0.8rem;
 }
 
 .size-holder{

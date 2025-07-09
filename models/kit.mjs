@@ -35,8 +35,14 @@ const kitSchema = new mongoose.Schema({
     required: true
   },
   stock: {
-    type: Number,
-    default: 12
+    type: [Number],
+    validate: {
+      validator: function(arr) {
+        return Array.isArray(arr) && arr.length === 3;
+      },
+      message: 'Stock must be an array of exactly 3 numbers (small, medium, large).'
+    },
+    default: [0, 0, 0]
   },
   description: String,
   dateAdded: {

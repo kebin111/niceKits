@@ -8,7 +8,7 @@
     "jerseyType": "Home",
     "image": "images/item1.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official FC Barcelona home kit from the 2016-17 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
     "players": ["Lionel Messi", "Neymar Jr", "Lamine Yamal", "Ousmane Dembélé"]
@@ -20,9 +20,9 @@
     "country": "Spain",
     "category": "Club",
     "jerseyType": "Home",
-    "image": "images/item1.jpg",
+    "image": "images/item4.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official Real Madrid home kit from the 2013-14 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
     "players": ["Cristiano Ronaldo", "Vinícius Júnior", "Jude Bellingham"]
@@ -34,9 +34,9 @@
     "country": "England",
     "category": "Club",
     "jerseyType": "Home",
-    "image": "images/item1.jpg",
+    "image": "images/item5.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official Liverpool FC home kit from the 2024-25 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
     "players": []
@@ -48,9 +48,9 @@
     "country": "England",
     "category": "Club",
     "jerseyType": "Home",
-    "image": "images/item1.jpg",
+    "image": "images/item6.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official Manchester City FC home kit from the 2022-23 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
     "players": ["Erling Haaland"]
@@ -62,9 +62,9 @@
     "country": "France",
     "category": "Club",
     "jerseyType": "Home",
-    "image": "images/item1.jpg",
+    "image": "images/item7.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official PSG home kit from the 2024-25 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
     "players": ["Lionel Messi", "Neymar Jr", "Kylian Mbappé"]
@@ -78,7 +78,7 @@
     "jerseyType": "Home",
     "image": "images/item8.jpg",
     "price": 29.99,
-    "stock": 15,
+    "stock": [5, 5, 5],
     "description": "Official Arsenal FC home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -92,7 +92,7 @@
     "jerseyType": "Home",
     "image": "images/item9.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Juventus home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Cristiano Ronaldo"]
@@ -106,7 +106,7 @@
     "jerseyType": "Home",
     "image": "images/item10.jpg",
     "price": 29.99,
-    "stock": 8,
+    "stock": [3, 2, 3],
     "description": "Official Bayern Munich home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -120,7 +120,7 @@
     "jerseyType": "Home",
     "image": "images/item11.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official AC Milan home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -134,7 +134,7 @@
     "jerseyType": "Home",
     "image": "images/item12.jpg",
     "price": 29.99,
-    "stock": 14,
+    "stock": [5, 4, 5],
     "description": "Official Inter Milan home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -147,7 +147,7 @@
     "jerseyType": "Home",
     "image": "images/nat1.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Argentina national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Lionel Messi"]
@@ -160,7 +160,7 @@
     "jerseyType": "Home",
     "image": "images/nat2.jpg",
     "price": 29.99,
-    "stock": 12,
+    "stock": [4, 4, 4],
     "description": "Official Brazil national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Neymar Jr", "Vinícius Júnior"]
@@ -173,7 +173,7 @@
     "jerseyType": "Home",
     "image": "images/nat3.jpg",
     "price": 29.99,
-    "stock": 9,
+    "stock": [3, 3, 3],
     "description": "Official France national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Kylian Mbappé", "Ousmane Dembélé"]
@@ -186,7 +186,7 @@
     "jerseyType": "Home",
     "image": "images/nat4.jpg",
     "price": 29.99,
-    "stock": 11,
+    "stock": [4, 3, 4],
     "description": "Official England national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Harry Kane", "Jude Bellingham"]
@@ -199,7 +199,7 @@
     "jerseyType": "Home",
     "image": "images/nat5.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Germany national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -212,7 +212,7 @@
     "jerseyType": "Home",
     "image": "images/nat6.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Spain national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Lamine Yamal"]
@@ -225,7 +225,7 @@
     "jerseyType": "Home",
     "image": "images/nat7.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Portugal national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": ["Cristiano Ronaldo"]
@@ -238,7 +238,7 @@
     "jerseyType": "Home",
     "image": "images/nat8.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Italy national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -251,7 +251,7 @@
     "jerseyType": "Home",
     "image": "images/nat9.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Netherlands national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
@@ -264,7 +264,7 @@
     "jerseyType": "Home",
     "image": "images/nat10.jpg",
     "price": 29.99,
-    "stock": 10,
+    "stock": [3, 4, 3],
     "description": "Official Uruguay national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
     "players": []
