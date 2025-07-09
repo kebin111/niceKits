@@ -32,7 +32,20 @@ app.get('/', async (req, res) =>{
 app.get('/api/hot-selections', async (req, res) =>{
    try{
     console.log('Fetching hot kits...');
-    const hotKits = await Kit.find({stock: {$lte: 12}}); 
+    const hotKits = await Kit.find({
+        $expr: {
+            $lte: [
+                { 
+                    $reduce: {
+                        input: "$stock",
+                        initialValue: 0,
+                        in: { $add: ["$$value", "$$this"]}
+                    }
+                }, 
+                12
+            ]
+        }
+    }); 
     console.log('Hot kits fetched:', hotKits.length);
     res.json(hotKits);
    }catch(error){
