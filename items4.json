@@ -11,7 +11,8 @@
     "stock": [4, 4, 4],
     "description": "Official FC Barcelona home kit from the 2016-17 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
-    "players": ["Lionel Messi", "Neymar Jr", "Lamine Yamal", "Ousmane Dembélé"]
+    "players": ["Lionel Messi", "Neymar Jr", "Lamine Yamal", "Ousmane Dembélé"],
+    "addons": ["La Liga Badge", "Champions League Badge", "Lionel Messi", "Neymar Jr", "Lamine Yamal", "Ousmane Dembélé"]
   },
   {
     "name": "Real Madrid Home '13-14",
@@ -25,7 +26,8 @@
     "stock": [4, 4, 4],
     "description": "Official Real Madrid home kit from the 2013-14 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
-    "players": ["Cristiano Ronaldo", "Vinícius Júnior", "Jude Bellingham"]
+    "players": ["Cristiano Ronaldo", "Vinícius Júnior", "Jude Bellingham"],
+    "addons": ["La Liga Badge", "Champions League Badge", "Cristiano Ronaldo", "Vinícius Júnior", "Jude Bellingham"]
   },
   {
     "name": "Liverpool Home '24-25",
@@ -39,7 +41,8 @@
     "stock": [4, 4, 4],
     "description": "Official Liverpool FC home kit from the 2024-25 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": ["Premier League Badge", "Champions League Badge" ]
   },
   {
     "name": "Manchester City Home '22-23",
@@ -53,7 +56,8 @@
     "stock": [4, 4, 4],
     "description": "Official Manchester City FC home kit from the 2022-23 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
-    "players": ["Erling Haaland"]
+    "players": ["Erling Haaland"],
+    "addons": ["Premier League Badge", "Champions League Badge", "Erling Haaland"]
   },
   {
     "name": "Paris Saint Germain Home '24-25",
@@ -67,7 +71,8 @@
     "stock": [4, 4, 4],
     "description": "Official PSG home kit from the 2024-25 season.",
     "dateAdded": { "$date": "2024-06-30T12:34:56.789Z" },
-    "players": ["Lionel Messi", "Neymar Jr", "Kylian Mbappé"]
+    "players": ["Lionel Messi", "Neymar Jr", "Kylian Mbappé"],
+    "addons": ["Ligue 1 Badge", "Champions League Badge", "Lionel Messi", "Neymar Jr", "Kylian Mbappé"]
   },
   {
     "name": "Arsenal Home '24-25",
@@ -81,7 +86,8 @@
     "stock": [5, 5, 5],
     "description": "Official Arsenal FC home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": ["Premier League Badge", "Champions League Badge"]
   },
   {
     "name": "Juventus Home '24-25",
@@ -95,7 +101,8 @@
     "stock": [3, 4, 3],
     "description": "Official Juventus home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Cristiano Ronaldo"]
+    "players": ["Cristiano Ronaldo"],
+    "addons": ["Serie A Badge", "Champions League Badge", "Cristiano Ronaldo"]
   },
   {
     "name": "Bayern Munich Home '24-25",
@@ -109,7 +116,8 @@
     "stock": [3, 2, 3],
     "description": "Official Bayern Munich home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": ["Harry Kane"],
+    "addons": ["Bundesliga Badge", "Champions League Badge", "Harry Kane"]
   },
   {
     "name": "AC Milan Home '24-25",
@@ -123,7 +131,8 @@
     "stock": [4, 4, 4],
     "description": "Official AC Milan home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": ["Serie A Badge", "Champions League Badge"]
   },
   {
     "name": "Inter Milan Home '24-25",
@@ -137,7 +146,8 @@
     "stock": [5, 4, 5],
     "description": "Official Inter Milan home kit for the 2024-25 season.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": ["Serie A Badge", "Champions League Badge"]
   },
   {
     "name": "Argentina Home '24-25",
@@ -145,12 +155,13 @@
     "category": "National",
     "country": "Argentina",
     "jerseyType": "Home",
-    "image": "images/nat1.jpg",
+    "image": "images/item13.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Argentina national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Lionel Messi"]
+    "players": ["Lionel Messi"],
+    "addons": ["Lionel Messi"]
   },
   {
     "name": "Brazil Home '24-25",
@@ -158,12 +169,13 @@
     "category": "National",
     "country": "Brazil",
     "jerseyType": "Home",
-    "image": "images/nat2.jpg",
+    "image": "images/item14.jpg",
     "price": 29.99,
     "stock": [4, 4, 4],
     "description": "Official Brazil national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Neymar Jr", "Vinícius Júnior"]
+    "players": ["Neymar Jr", "Vinícius Júnior"],
+    "addons": ["Neymar Jr", "Vinícius Júnior"]
   },
   {
     "name": "France Home '24-25",
@@ -171,12 +183,13 @@
     "category": "National",
     "country": "France",
     "jerseyType": "Home",
-    "image": "images/nat3.jpg",
+    "image": "images/item15.jpg",
     "price": 29.99,
     "stock": [3, 3, 3],
     "description": "Official France national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Kylian Mbappé", "Ousmane Dembélé"]
+    "players": ["Kylian Mbappé", "Ousmane Dembélé"],
+    "addons": ["Kylian Mbappé", "Ousmane Dembélé"]
   },
   {
     "name": "England Home '24-25",
@@ -184,12 +197,13 @@
     "category": "National",
     "country": "England",
     "jerseyType": "Home",
-    "image": "images/nat4.jpg",
+    "image": "images/item16.jpg",
     "price": 29.99,
     "stock": [4, 3, 4],
     "description": "Official England national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Harry Kane", "Jude Bellingham"]
+    "players": ["Harry Kane", "Jude Bellingham"],
+    "addons": ["Harry Kane", "Jude Bellingham"]
   },
   {
     "name": "Germany Home '24-25",
@@ -197,12 +211,13 @@
     "category": "National",
     "country": "Germany",
     "jerseyType": "Home",
-    "image": "images/nat5.jpg",
+    "image": "images/item17.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Germany national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": []
   },
   {
     "name": "Spain Home '24-25",
@@ -210,12 +225,13 @@
     "category": "National",
     "country": "Spain",
     "jerseyType": "Home",
-    "image": "images/nat6.jpg",
+    "image": "images/item18.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Spain national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Lamine Yamal"]
+    "players": ["Lamine Yamal"],
+    "addons": ["Lamine Yamal"]
   },
   {
     "name": "Portugal Home '24-25",
@@ -223,12 +239,13 @@
     "category": "National",
     "country": "Portugal",
     "jerseyType": "Home",
-    "image": "images/nat7.jpg",
+    "image": "images/item19.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Portugal national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": ["Cristiano Ronaldo"]
+    "players": ["Cristiano Ronaldo"],
+    "addons": ["Cristiano Ronaldo"]
   },
   {
     "name": "Italy Home '24-25",
@@ -236,12 +253,13 @@
     "category": "National",
     "country": "Italy",
     "jerseyType": "Home",
-    "image": "images/nat8.jpg",
+    "image": "images/item20.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Italy national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": []
   },
   {
     "name": "Netherlands Home '24-25",
@@ -249,12 +267,13 @@
     "category": "National",
     "country": "Netherlands",
     "jerseyType": "Home",
-    "image": "images/nat9.jpg",
+    "image": "images/item21.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Netherlands national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": []
   },
   {
     "name": "Uruguay Home '24-25",
@@ -262,11 +281,12 @@
     "category": "National",
     "country": "Uruguay",
     "jerseyType": "Home",
-    "image": "images/nat10.jpg",
+    "image": "images/item22.jpg",
     "price": 29.99,
     "stock": [3, 4, 3],
     "description": "Official Uruguay national team kit for 2024-25.",
     "dateAdded": { "$date": "2025-06-30T12:34:56.789Z" },
-    "players": []
+    "players": [],
+    "addons": []
   }
 ]

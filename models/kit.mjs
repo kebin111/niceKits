@@ -52,6 +52,10 @@ const kitSchema = new mongoose.Schema({
   players: {
     type: [String],
     default: []
+  },
+  addons: {
+    type: [String],
+    default: []
   }
 });
 
