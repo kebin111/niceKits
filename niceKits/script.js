@@ -478,12 +478,33 @@ function displayKitDetails(kit) {
   const kitPriceElement = document.querySelector('.kit-info h3');
   const kitImageElement = document.querySelector('.kit-header img');
   const kitDescriptionElement = document.querySelector('.kit-description p');
+
+  const sizeBtn1 = document.getElementById('size-btn-1');
+  const sizeBtn2 = document.getElementById('size-btn-2');
+  const sizeBtn3 = document.getElementById('size-btn-3');
+  
+  sizeBtn1.addEventListener('click', function() {
+    console.log('Size button 1 clicked');
+  });
+  sizeBtn2.addEventListener('click', function() {
+    console.log('Size button 2 clicked');
+  });
+  sizeBtn3.addEventListener('click', function() {
+    console.log('Size button 3 clicked');
+  });
   
   if (kitNameElement) kitNameElement.textContent = kit.name;
   if (kitPriceElement) kitPriceElement.textContent = `$${kit.price}`;
   if (kitImageElement) kitImageElement.src = kit.image;
   if (kitDescriptionElement) kitDescriptionElement.textContent = kit.description;
   
+  const sizeBtns = [sizeBtn1, sizeBtn2, sizeBtn3];
+
+  for(let i = 0; i < 3; i++){
+  if(kit.stock[i] <= 0){
+   sizeBtns[i].style.display = 'none';
+  }
+  }
   console.log('Kit details updated:', kit);
 }
 
