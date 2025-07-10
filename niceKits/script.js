@@ -454,6 +454,7 @@ const dropdownButton = document.getElementById('dropdownButton');
 
 const dropdownLinksB = document.querySelectorAll('.dropdown-content-b a');
 const dropdownButtonB = document.getElementById('dropdownButton-b');
+const dropdownContentB = document.querySelector('.dropdown-content-b');
 // ALL KITS SORTING
 const akDropdownButton = document.getElementById('ak-dropdownButton');
 const akDropdownContent = document.querySelector('.ak-dropdown-content');
@@ -483,7 +484,10 @@ function displayKitDetails(kit) {
   const sizeBtn1 = document.getElementById('size-btn-1');
   const sizeBtn2 = document.getElementById('size-btn-2');
   const sizeBtn3 = document.getElementById('size-btn-3');
-  
+  const addonsBtn = document.getElementById('dropdownButton-b');
+   
+  const dropdownContentB = document.querySelector('.dropdown-content-b');
+
   sizeBtn1.addEventListener('click', function() {
     console.log('Size button 1 clicked');
   });
@@ -506,6 +510,19 @@ function displayKitDetails(kit) {
    sizeBtns[i].style.display = 'none';
   }
   }
+  if(kit.addons.length > 0){
+    dropdownContentB.innerHTML = '';
+    for(let i = 0; i < kit.addons.length; i++){
+      const aLink = document.createElement('a');
+      aLink.href = '#';
+      aLink.setAttribute('data-value', kit.addons[i]);
+      aLink.textContent = kit.addons[i];
+      dropdownContentB.appendChild(aLink);
+    }
+  }
+  else{
+    dropdownContentB.innerHTML = '<p>No addons available</p>';
+  }
   console.log('Kit details updated:', kit);
 }
 
@@ -513,16 +530,27 @@ dropdownLinks.forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault(); // Prevent link navigation
     const selected = this.getAttribute('data-value');
+    console.log('Selected size:', selected);
     dropdownButton.textContent = selected;
   });
 });
 
-dropdownLinksB.forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent link navigation
-    const selected = this.getAttribute('data-value');
+// dropdownLinksB.forEach(link => {
+//   link.addEventListener('click', function(e) {
+//     e.preventDefault(); // Prevent link navigation
+//     const selected = this.getAttribute('data-value');
+//     console.log('Selected addon:', selected); 
+//     dropdownButtonB.textContent = selected;
+//   });
+// });
+
+dropdownContentB.addEventListener('click', function(e) {
+  if(e.target.matches('a[data-value]')){
+    e.preventDefault();
+    const selected = e.target.getAttribute('data-value');
+    console.log('Selected addon:', selected);
     dropdownButtonB.textContent = selected;
-  });
+  }
 });
 
 akDropdownLinks.forEach(link => {
