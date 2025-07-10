@@ -452,7 +452,8 @@ function fetchCollection(cButtonContent){{
 const dropdownLinks = document.querySelectorAll('.dropdown-content a');
 const dropdownButton = document.getElementById('dropdownButton');
 
-
+const dropdownLinksB = document.querySelectorAll('.dropdown-content-b a');
+const dropdownButtonB = document.getElementById('dropdownButton-b');
 // ALL KITS SORTING
 const akDropdownButton = document.getElementById('ak-dropdownButton');
 const akDropdownContent = document.querySelector('.ak-dropdown-content');
@@ -513,6 +514,14 @@ dropdownLinks.forEach(link => {
     e.preventDefault(); // Prevent link navigation
     const selected = this.getAttribute('data-value');
     dropdownButton.textContent = selected;
+  });
+});
+
+dropdownLinksB.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent link navigation
+    const selected = this.getAttribute('data-value');
+    dropdownButtonB.textContent = selected;
   });
 });
 
