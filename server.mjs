@@ -5,13 +5,26 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import Kit from './models/kit.mjs';
 
-
-// require('dotenv').config();
-// const express = require('express');
-// const mongoose = require('mongoose');
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
+
+// Initialize session middleware
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+// Initialize cart in session if it doesn't exist
+app.use((req, res, next) => {
+  if (!req.session.cart) {
+    req.session.cart = [];
+  }
+  next();
+});
 
 app.use(express.json());  
 app.use(express.static('niceKits'));// Routes
@@ -171,6 +184,85 @@ app.get('/api/collections', async (req, res) =>{
         res.status(500).json({message: error.message});
     }
 });
+
+
+app.get('/api/add-to-cart', async (req, res) =>{
+    try{
+        console.log('Adding to cart...');
+        const kitId = req.query.id;
+        const size = req.query.size;
+        const addon = req.query.addon;
+        console.log('addon:', addon);
+        if(!kitId){
+            return res.status(400).json({message: 'Kit ID is required'});
+        }
+        
+        const kit = await Kit.findById(kitId);
+        console.log('Kit found:', kit);
+        
+        if(!kit){
+            return res.status(404).json({message: 'Kit not found'});
+        }
+        
+        // Add kit to cart with size and addon information
+        const cartItem = {
+            ...kit.toObject(),
+            selectedSize: size,
+            selectedAddon: addon,
+            quantity: 1
+        };
+        
+        req.session.cart.push(cartItem);
+        console.log('Cart updated:', req.session.cart);
+        
+        res.json(req.session.cart);
+    }catch(error){
+        console.error('Error adding to cart:', error);
+        res.status(500).json({message: error.message});
+    }
+});
+
+app.get('/api/get-cart', async (req, res) =>{
+    try{
+        console.log('Getting cart...');
+        console.log('Session cart:', req.session.cart);
+        res.json(req.session.cart || []);
+    }catch(error){
+        console.error('Error getting cart:', error);
+        res.status(500).json({message: error.message});
+    }
+});
+
+app.get('/api/remove-from-cart', async (req, res) =>{
+    try{
+        console.log('Removing from cart...');
+        const kitId = req.query.id;
+        
+        if(!kitId){
+            return res.status(400).json({message: 'Kit ID is required'});
+        }
+        
+        req.session.cart = req.session.cart.filter(item => item._id !== kitId);
+        console.log('Cart after removal:', req.session.cart);
+        
+        res.json(req.session.cart);
+    }catch(error){
+        console.error('Error removing from cart:', error);
+        res.status(500).json({message: error.message});
+    }
+});
+
+app.get('/api/clear-cart', async (req, res) =>{
+    try{
+        console.log('Clearing cart...');
+        req.session.cart = [];
+        res.json({message: 'Cart cleared successfully'});
+    }catch(error){
+        console.error('Error clearing cart:', error);
+        res.status(500).json({message: error.message});
+    }
+});
+
 app.post('/home', async (req, res) =>{
 
 

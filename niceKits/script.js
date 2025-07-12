@@ -1,5 +1,7 @@
+console.log('✅ SCRIPT.JS LOADED');
 document.addEventListener("DOMContentLoaded", () => {
   // HOME PAGE SLIDER
+  console.log('✅ DOMContentLoaded started');
   let currentSlide = 0;
   const slides = document.querySelectorAll('.slide');
   const totalSlides = slides.length;
@@ -168,7 +170,7 @@ function fetchCollection(cButtonContent){{
 
 
   }
-
+  console.log('✅Hot selections');
   // HOT SELECTIONS REQ
   fetch('/api/hot-selections')
   .then(response => response.json())  
@@ -232,6 +234,7 @@ function fetchCollection(cButtonContent){{
   }
 
   // NEW ARRIVALS REQ
+  console.log('✅ New arrivals');
   fetch('/api/new-arrivals')
   .then(response => response.json())
   .then(na_kits => {
@@ -274,6 +277,7 @@ function fetchCollection(cButtonContent){{
   const playerName = getPlayerNameFromURL();
 
   //console.log('Player name:', playerName);
+  console.log('✅ Player kits');
   if(playerName){
     fetch(`/api/player-kits?name=${encodeURIComponent(playerName)}`)
   .then(response => {
@@ -335,6 +339,7 @@ function fetchCollection(cButtonContent){{
   }
 
   // Initial load (default sort)
+  console.log('✅ All kits');
   fetchAndRenderKits('');
 
   function fetchAndRenderKits(sortOrder) {  
@@ -378,12 +383,17 @@ function fetchCollection(cButtonContent){{
   }
 
   // SEARCH FUNCTIONALITY
-  document.getElementById('search-button').addEventListener('click', function() {
+  console.log('✅ Search functionality');
+  const searchButton = document.getElementById('search-button');
+if (searchButton) {
+  searchButton.addEventListener('click', function() {
     const searchInput = document.getElementById('search-bar').value;
     console.log('Search input:', searchInput);
     searchKits(searchInput);
   });
+}
 
+ 
 
   function searchKits(searchInput) {
     if(searchInput != "search kits..."){
@@ -392,6 +402,10 @@ function fetchCollection(cButtonContent){{
       .then(searchResults => {
         console.log('Search results:', searchResults);
         const searchResultsContainer = document.querySelector('.ak-item-group');
+        if(!searchResultsContainer){
+          console.error('Search results container not found');
+          return;
+        }
         searchResultsContainer.innerHTML = '';
         if(searchResults.length === 0){
           console.log('No search results found');
@@ -421,23 +435,82 @@ function fetchCollection(cButtonContent){{
     }
     }
 
-    // COLLECTIONS FUNCTIONALITY
-    // document.getElementById('c-view-na-btn').addEventListener('click', function() {
-    //   const cButtonContent = document.getElementById('c-view-na-btn').value;
-    //   console.log('Collection button content:', cButtonContent);
+    console.log('✅ Cart');
 
-    //   if(cButtonContent === 'clubs'){
-    //     console.log('Clubs button clicked');
-    //   }
-    //   else if(cButtonContent === 'national'){
-    //     console.log('National button clicked');
-    //   }
-    //   else if(cButtonContent === 'limited'){
-    //     console.log('Limited button clicked');
-    //   }else{}
-    // });
+    //  CART 
+    fetch('/api/get-cart')
+    .then(response => {
+      console.log('response', response);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(cart => {
+      console.log('Cart:', cart);
+      const cartItemGroup = document.querySelector('.atc-item-group');
+   
+      if(!cartItemGroup){
+        console.error('Cart item group not found');
+        return;
+      }
 
-  
+      if(cart.length === 0){
+        cartItemGroup.innerHTML = '<p>No items in cart</p>';
+        return;
+      }
+      cartItemGroup.innerHTML = '';
+
+      cart.forEach(kit => {
+        const itemHolder = document.createElement('div');
+        itemHolder.className = 'atc-item-holder';
+        itemHolder.innerHTML = `
+          <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
+          <div class="atc-item-info">
+            <h4>${kit.name}</h4>
+            <p>Price: $${kit.price}</p>
+            ${kit.selectedSize ? `<p>Size: ${kit.selectedSize}</p>` : ''}
+            ${kit.selectedAddon ? `<p>Addon: ${kit.selectedAddon}</p>` : '<p>Addon: None</p>'}
+            <p>Quantity: ${kit.quantity || 1}</p>
+            <button class="remove-btn" data-id="${kit._id}">Remove</button>
+          </div>
+        `;
+        
+        cartItemGroup.appendChild(itemHolder);
+      });
+
+      // Add event listeners for remove buttons
+      document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const kitId = this.getAttribute('data-id');
+          removeFromCart(kitId);
+        });
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching cart:', error);
+      const cartItemGroup = document.querySelector('.atc-item-group');
+      if(cartItemGroup){
+        cartItemGroup.innerHTML = '<p>Error loading cart. Please try again.</p>';
+      }
+    });
+
+    // Function to remove item from cart
+    function removeFromCart(kitId) {
+      fetch(`/api/remove-from-cart?id=${kitId}`)
+        .then(response => response.json())
+        .then(cart => {
+          console.log('Item removed from cart:', cart);
+          // Reload the cart display
+          location.reload();
+        })
+        .catch(error => {
+          console.error('Error removing from cart:', error);
+        });
+    }
+
+        // <p>Size: ${selectedSize}</p>
+        // <p>Addons: ${selectedAddon}</p>
 
 
 
@@ -475,6 +548,7 @@ function getPlayerNameFromURL() {
 
 // Function to display kit details on the page
 function displayKitDetails(kit) {
+  console.log('✅ Displaying kit details');
   // Update page elements with kit data based on the actual HTML structure
   const kitNameElement = document.querySelector('.kit-info h2');
   const kitPriceElement = document.querySelector('.kit-info h3');
@@ -488,14 +562,22 @@ function displayKitDetails(kit) {
    
   const dropdownContentB = document.querySelector('.dropdown-content-b');
 
+  const atcBtn = document.querySelector('.atc-btn');
+
+  let selectedSize = '';
+  let selectedAddon = '';
+
   sizeBtn1.addEventListener('click', function() {
     console.log('Size button 1 clicked');
+    selectedSize = this.getAttribute('data-value');
   });
   sizeBtn2.addEventListener('click', function() {
     console.log('Size button 2 clicked');
+    selectedSize = this.getAttribute('data-value');
   });
   sizeBtn3.addEventListener('click', function() {
     console.log('Size button 3 clicked');
+    selectedSize = this.getAttribute('data-value');
   });
   
   if (kitNameElement) kitNameElement.textContent = kit.name;
@@ -519,10 +601,38 @@ function displayKitDetails(kit) {
       aLink.textContent = kit.addons[i];
       dropdownContentB.appendChild(aLink);
     }
+    dropdownContentB.addEventListener('click', function(e) {
+      if(e.target.matches('a[data-value]')){
+        e.preventDefault();
+        const selected = e.target.getAttribute('data-value');
+        console.log('Selected addon:', selected);
+        selectedAddon = selected;
+      }
+    });
   }
   else{
     dropdownContentB.innerHTML = '<p>No addons available</p>';
   }
+  atcBtn.addEventListener('click', function() {
+    if(selectedSize === ''){
+      alert('Please select a size');
+      return;
+    }else{
+      
+      console.log('Add to cart button clicked');
+      fetch(`/api/add-to-cart?id=${kit._id}&size=${selectedSize}&addon=${selectedAddon}`)
+      .then(response => response.json())
+      .then(kits => {
+        console.log('Add to cart response:', kits);
+        window.location.href = 'addtocart.html';
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+      });
+    }
+
+    
+  });
   console.log('Kit details updated:', kit);
 }
 
@@ -560,4 +670,7 @@ akDropdownLinks.forEach(link => {
     akDropdownButton.textContent = selected;
   });
 });
+
+
+
 
