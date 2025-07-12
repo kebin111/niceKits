@@ -448,7 +448,7 @@ if (searchButton) {
     })
     .then(cart => {
       console.log('Cart:', cart);
-      const cartItemGroup = document.querySelector('.atc-item-group');
+      const cartItemGroup = document.querySelector('.atc-container');
    
       if(!cartItemGroup){
         console.error('Cart item group not found');
@@ -463,8 +463,9 @@ if (searchButton) {
 
       cart.forEach(kit => {
         const itemHolder = document.createElement('div');
-        itemHolder.className = 'atc-item-holder';
+        itemHolder.className = 'atc-item-group';
         itemHolder.innerHTML = `
+        <div class="atc-item-holder">
           <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
           <div class="atc-item-info">
             <h4>${kit.name}</h4>
@@ -473,6 +474,7 @@ if (searchButton) {
             ${kit.selectedAddon ? `<p>Addon: ${kit.selectedAddon}</p>` : '<p>Addon: None</p>'}
             <p>Quantity: ${kit.quantity || 1}</p>
             <button class="remove-btn" data-id="${kit._id}">Remove</button>
+          </div>
           </div>
         `;
         

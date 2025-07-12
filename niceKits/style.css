@@ -752,6 +752,15 @@ footer {
   margin-right: 15rem;
 }
 
+.atc-container{
+  padding-top: 2em;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
 .atc-item-group{  
   background-color: #ffffff;
   color: #000000;
@@ -777,6 +786,7 @@ footer {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
+  width: 100%;
 }
 
 
