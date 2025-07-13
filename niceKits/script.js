@@ -491,6 +491,8 @@ if (searchButton) {
           removeFromCart(kitId);
         });
       });
+
+      document.querySelector('.clear-cart-btn').addEventListener('click', clearCart);
     })
     .catch(error => {
       console.error('Error fetching cart:', error);
@@ -512,6 +514,18 @@ if (searchButton) {
         .catch(error => {
           console.error('Error removing from cart:', error);
         });
+    }
+
+    function clearCart(){
+      fetch('/api/clear-cart')
+      .then(response => response.json())
+      .then(cart => {
+        console.log('Cart cleared:', cart);
+        location.reload();
+      })
+      .catch(error => {
+        console.error('Error clearing cart:', error);
+      });
     }
 
         // <p>Size: ${selectedSize}</p>
