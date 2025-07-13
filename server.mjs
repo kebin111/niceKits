@@ -175,8 +175,26 @@ app.get('/api/search-kits', async (req, res) =>{
 app.get('/api/collections', async (req, res) =>{
     try{
         const category = req.query.category;
+        let kits;
+        if(category === 'hot'){
+         kits = await Kit.find({
+                $expr: {
+                    $lte: [
+                        { 
+                            $reduce: {
+                                input: "$stock",
+                                initialValue: 0,
+                                in: { $add: ["$$value", "$$this"]}
+                            }
+                        }, 
+                        12
+                    ]
+                }
+            });
+        }else{
         console.log('Fetching kits for category:', category);
-        const kits = await Kit.find({category: category});
+         kits = await Kit.find({category: category});
+        }
         console.log('Kits fetched:', kits.length);
         res.json(kits);
     }catch(error){

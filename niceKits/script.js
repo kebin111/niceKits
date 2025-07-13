@@ -107,6 +107,9 @@ function updateSection(cButtonContent){
   else if(cButtonContent === 'Limited'){
     c_section_h2.textContent = 'Limited Edition Kits ⭐';
     c_section_p.textContent = 'Exclusive and rare collections';
+  }else{
+    c_section_h2.textContent = 'Hot selections 🔥';
+    c_section_p.textContent = 'selling out fast!';
   }
 }
 function fetchCollection(cButtonContent){{
@@ -153,7 +156,7 @@ function fetchCollection(cButtonContent){{
     cViewBtn.forEach((button, index) => {
       // Capture the button category immediately
       const buttonCategory = button.getAttribute('data-category');
-      
+      fetchCollection('hot');
       button.addEventListener("click", () => {
         alert("Clicked!");
         const cButtonContent = buttonCategory;
