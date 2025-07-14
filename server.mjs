@@ -338,6 +338,77 @@ app.get('/api/decrement-quantity', async (req, res) =>{
     }
 });
 
+app.get('/api/checkout', async (req, res) =>{
+    try{
+        console.log('Checking out...');
+        const cart = req.session.cart;
+        const wallet = req.session.wallet;
+        const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        if(total > wallet){
+            alert('Insufficient funds');
+            return res.status(400).json({message: 'Insufficient funds'});
+        }
+
+        let quantity = 0;
+        let newStock = 0;
+        let doc;
+        for(let i = 0; i < cart.length; i++){
+        
+            switch(cart[i].selectedSize){
+                case 'Small':
+                    //cart[i].stock[0] -= cart[i].quantity;
+                    //await Kit.findByIdAndUpdate(cart[i]._id, {"stock.0": cart[i].stock[0]});
+                    doc = await Kit.findById(cart[i]._id, {stock: 1});
+                    quantity = doc.stock[0];
+                    if(cart[i].quantity > quantity){
+                        alert('Insufficient stock');
+                        return res.status(400).json({message: 'Insufficient stock'});
+                    }else{
+                        newStock = quantity - cart[i].quantity;
+                        await Kit.findByIdAndUpdate(cart[i]._id, {"stock.0": newStock});
+                    }
+
+                    break;
+                case 'Medium':
+                    doc = await Kit.findById(cart[i]._id, {stock: 1});
+                    quantity = doc.stock[1];
+                    if(cart[i].quantity > quantity){
+                        alert('Insufficient stock');
+                        return res.status(400).json({message: 'Insufficient stock'});
+                    }else{
+                        newStock = quantity - cart[i].quantity;
+                        await Kit.findByIdAndUpdate(cart[i]._id, {"stock.1": newStock});
+                    }
+                    break;
+                case 'Large':
+                    doc = await Kit.findById(cart[i]._id, {stock: 1});
+                    quantity = doc.stock[2];
+                    console.log('quantity:', quantity);
+                    if(cart[i].quantity > quantity){
+                        alert('Insufficient stock');
+                        return res.status(400).json({message: 'Insufficient stock'});
+                    }else{
+                        newStock = quantity - cart[i].quantity;
+                        await Kit.findByIdAndUpdate(cart[i]._id, {"stock.2": newStock});
+                    }
+                    break;
+            }
+        }
+        req.session.cart = [];
+        req.session.wallet -= total;
+        const refreshDb = await Kit.find();
+    
+        res.json({
+            refreshDb: refreshDb,
+            cart: req.session.cart,
+            wallet: req.session.wallet,
+            message: 'Checkout successful'
+        });
+    }catch(error){
+        console.error('Error checking out:', error);
+        res.status(500).json({message: error.message});
+    }
+});
 
 app.post('/home', async (req, res) =>{
 

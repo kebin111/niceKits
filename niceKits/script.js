@@ -559,6 +559,8 @@ if (searchButton) {
         });
       });
       document.querySelector('.clear-cart-btn').addEventListener('click', clearCart);
+
+      document.querySelector('.checkout-btn').addEventListener('click', checkout);
     })
     .catch(error => {
       console.error('Error fetching cart:', error);
@@ -627,6 +629,16 @@ if (searchButton) {
       .then(response => response.json())
       .then(cart => {
         console.log('Quantity decremented:', cart);
+        updateCartHeader(cart);
+        location.reload();
+      });
+    }
+
+    function checkout(){
+      fetch('/api/checkout')
+      .then(response => response.json())
+      .then(cart => {
+        console.log('Checkout:', cart);
         updateCartHeader(cart);
         location.reload();
       });
