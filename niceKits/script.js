@@ -478,10 +478,21 @@ if (searchButton) {
             ${kit.selectedSize ? `<p>Size: ${kit.selectedSize}</p>` : ''}
             ${kit.selectedAddon ? `<p>Addon: ${kit.selectedAddon}</p>` : '<p>Addon: None</p>'}
             <p>Quantity: ${kit.quantity || 1}</p>
-            <button class="remove-btn" data-id="${kit._id}">Remove</button>
+            <button class="remove-btn" data-id="${kit.cartId}">Remove</button>
+            <button class="plus-btn" data-id="${kit._id}">+</button>
+            <button class="minus-btn" data-id="${kit._id}">-</button>
           </div>
           </div>
         `;
+
+        // for(let i = 0; i < 3; i++){
+        //   if(cart.cart.stock[i] <= 3){
+        //     itemHolder.innerHTML += `
+        //     <p>LIMITED STOCKS LEFT</p>
+        //     `;
+        //     break;
+        //   }
+        // }
         
         cartItemGroup.appendChild(itemHolder);
       });
@@ -489,11 +500,64 @@ if (searchButton) {
       // Add event listeners for remove buttons
       document.querySelectorAll('.remove-btn').forEach(button => {
         button.addEventListener('click', function() {
-          const kitId = this.getAttribute('data-id');
-          removeFromCart(kitId);
+          //const kitId = this.getAttribute('data-id');
+          //change to cartid instead of kitid
+          const cartId = this.getAttribute('data-id');
+          removeFromCart(cartId);
         });
       });
 
+      document.querySelectorAll('.plus-btn').forEach(button => {  
+        button.addEventListener('click', function() {
+          console.log('Plus button clicked');
+          const kitId = this.getAttribute('data-id');
+          for(let i = 0; i < cart.cart.length; i++){
+            if(cart.cart[i]._id === kitId){
+              switch(cart.cart[i].selectedSize){
+                case 'Small':
+                  if(cart.cart[i].quantity < cart.cart[i].stock[0]){
+                    incrementQuantity(cart.cart[i].cartId);
+                  }else{
+                    alert('Stock is limited');
+                  }
+                  break;
+                case 'Medium':
+                  if(cart.cart[i].quantity < cart.cart[i].stock[1]){
+                    incrementQuantity(cart.cart[i].cartId);
+                  }else{
+                    alert('Stock is limited');
+                  }
+                  break;
+                case 'Large':
+                  if(cart.cart[i].quantity < cart.cart[i].stock[2]){
+                    incrementQuantity(cart.cart[i].cartId);
+                  }else{
+                    alert('Stock is limited');
+                  }
+                  break;
+              }
+            }
+          }
+          console.log('Cart:', cart.cart);
+        });
+      });
+      document.querySelectorAll('.minus-btn').forEach(button => {  
+        button.addEventListener('click', function() {
+          console.log('Minus button clicked');
+          const kitId = this.getAttribute('data-id');
+          for(let i = 0; i < cart.cart.length; i++){
+            if(cart.cart[i]._id === kitId){
+
+                  if(cart.cart[i].quantity > 1){
+                      decrementQuantity(cart.cart[i].cartId);     
+                  }else{
+                    removeFromCart(cart.cart[i].cartId);
+                  }
+            }                                                       
+          } 
+          console.log('Cart:', cart.cart);
+        });
+      });
       document.querySelector('.clear-cart-btn').addEventListener('click', clearCart);
     })
     .catch(error => {
@@ -505,8 +569,8 @@ if (searchButton) {
     });
 
     // Function to remove item from cart
-    function removeFromCart(kitId) {
-      fetch(`/api/remove-from-cart?id=${kitId}`)
+    function removeFromCart(cartId) {
+      fetch(`/api/remove-from-cart?id=${cartId}`)
         .then(response => response.json())
         .then(cart => {
           console.log('Item removed from cart:', cart);
@@ -548,8 +612,25 @@ if (searchButton) {
         `;
     }
 
-        // <p>Size: ${selectedSize}</p>
-        // <p>Addons: ${selectedAddon}</p>
+    function incrementQuantity(cartId){
+      fetch(`/api/increment-quantity?id=${cartId}`)
+      .then(response => response.json())
+      .then(cart => {
+        console.log('Quantity incremented:', cart);
+        updateCartHeader(cart);
+        location.reload();
+      });
+    }
+
+    function decrementQuantity(cartId){
+      fetch(`/api/decrement-quantity?id=${cartId}`)
+      .then(response => response.json())
+      .then(cart => {
+        console.log('Quantity decremented:', cart);
+        updateCartHeader(cart);
+        location.reload();
+      });
+    }
 
 
 

@@ -229,6 +229,7 @@ app.get('/api/add-to-cart', async (req, res) =>{
         // Add kit to cart with size and addon information
         const cartItem = {
             ...kit.toObject(),
+            cartId : Date.now().toString(36),
             selectedSize: size,
             selectedAddon: addon,
             quantity: 1
@@ -261,13 +262,14 @@ app.get('/api/get-cart', async (req, res) =>{
 app.get('/api/remove-from-cart', async (req, res) =>{
     try{
         console.log('Removing from cart...');
-        const kitId = req.query.id;
+            const cartId = req.query.id;
+            const cartItem = req.session.cart.find(item => item.cartId === cartId);
+            if(!cartItem){
+                return res.status(400).json({message: 'Cart item not found'});
+            }
+            
+            req.session.cart = req.session.cart.filter(item => item.cartId !== cartId);
         
-        if(!kitId){
-            return res.status(400).json({message: 'Kit ID is required'});
-        }
-        
-        req.session.cart = req.session.cart.filter(item => item._id !== kitId);
         console.log('Cart after removal:', req.session.cart);
         
         res.json({
@@ -294,6 +296,48 @@ app.get('/api/clear-cart', async (req, res) =>{
         res.status(500).json({message: error.message});
     }
 });
+
+app.get('/api/increment-quantity', async (req, res) =>{
+    try{
+        console.log('Incrementing quantity...');
+        const cartId = req.query.id;
+        const cartItem = req.session.cart.find(item => item.cartId === cartId);
+        if(!cartItem){
+            return res.status(404).json({message: 'Cart item not found'});
+        }
+        cartItem.quantity++;
+        res.json({
+            cart: req.session.cart,
+            wallet: req.session.wallet,
+            message: 'Quantity incremented successfully'
+        });     
+    }catch(error){
+        console.error('Error incrementing quantity:', error);
+        res.status(500).json({message: error.message});
+    }
+});
+
+
+app.get('/api/decrement-quantity', async (req, res) =>{
+    try{
+        console.log('Decrementing quantity...');
+        const cartId = req.query.id;
+        const cartItem = req.session.cart.find(item => item.cartId === cartId);
+        if(!cartItem){
+            return res.status(404).json({message: 'Cart item not found'});
+        }
+        cartItem.quantity--;
+        res.json({
+            cart: req.session.cart,
+            wallet: req.session.wallet,
+            message: 'Quantity decremented successfully'
+        });     
+    }catch(error){
+        console.error('Error decrementing quantity:', error);
+        res.status(500).json({message: error.message});
+    }
+});
+
 
 app.post('/home', async (req, res) =>{
 
