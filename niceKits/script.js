@@ -458,13 +458,15 @@ if (searchButton) {
         return;
       }
 
-      if(cart.length === 0){
+      if(cart.cart.length === 0){
+        updateCartHeader(cart);
         cartItemGroup.innerHTML = '<p>No items in cart</p>';
         return;
       }
+      updateCartHeader(cart);
       cartItemGroup.innerHTML = '';
 
-      cart.forEach(kit => {
+      cart.cart.forEach(kit => {
         const itemHolder = document.createElement('div');
         itemHolder.className = 'atc-item-group';
         itemHolder.innerHTML = `
@@ -508,6 +510,7 @@ if (searchButton) {
         .then(response => response.json())
         .then(cart => {
           console.log('Item removed from cart:', cart);
+          updateCartHeader(cart);
           // Reload the cart display
           location.reload();
         })
@@ -521,11 +524,28 @@ if (searchButton) {
       .then(response => response.json())
       .then(cart => {
         console.log('Cart cleared:', cart);
+        updateCartHeader(cart);
         location.reload();
       })
       .catch(error => {
         console.error('Error clearing cart:', error);
       });
+    }
+
+    function updateCartHeader(cart){
+        const cartHeader = document.querySelector('.atc-header');
+
+        let total = cart.cart.reduce((acc, kit) => acc + kit.price * kit.quantity, 0);
+        let items = cart.cart.reduce((acc, kit) => acc + kit.quantity, 0);
+        cartHeader.innerHTML = '';
+        cartHeader.innerHTML = `
+        <section>
+        <h2>My Cart</h2> 
+        <h3>Total: $${total}</h3>
+        <h3>Items: ${items}</h3>
+        <h3>Wallet: $${cart.wallet}</h3>
+        </section>
+        `;
     }
 
         // <p>Size: ${selectedSize}</p>

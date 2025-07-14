@@ -23,6 +23,10 @@ app.use((req, res, next) => {
   if (!req.session.cart) {
     req.session.cart = [];
   }
+
+  if(!req.session.wallet){
+    req.session.wallet = 1000;
+  }
   next();
 });
 
@@ -244,7 +248,10 @@ app.get('/api/get-cart', async (req, res) =>{
     try{
         console.log('Getting cart...');
         console.log('Session cart:', req.session.cart);
-        res.json(req.session.cart || []);
+        res.json({
+            cart: req.session.cart || [],
+            wallet: req.session.wallet || 1000
+        });
     }catch(error){
         console.error('Error getting cart:', error);
         res.status(500).json({message: error.message});
@@ -263,7 +270,10 @@ app.get('/api/remove-from-cart', async (req, res) =>{
         req.session.cart = req.session.cart.filter(item => item._id !== kitId);
         console.log('Cart after removal:', req.session.cart);
         
-        res.json(req.session.cart);
+        res.json({
+            cart: req.session.cart,
+            wallet: req.session.wallet
+        });
     }catch(error){
         console.error('Error removing from cart:', error);
         res.status(500).json({message: error.message});
@@ -274,7 +284,11 @@ app.get('/api/clear-cart', async (req, res) =>{
     try{
         console.log('Clearing cart...');
         req.session.cart = [];
-        res.json({message: 'Cart cleared successfully'});
+        res.json({
+            cart: req.session.cart,
+            wallet: req.session.wallet,
+            message: 'Cart cleared successfully'
+        });
     }catch(error){
         console.error('Error clearing cart:', error);
         res.status(500).json({message: error.message});
