@@ -132,6 +132,7 @@ function fetchCollection(cButtonContent){{
       <div class="c-item-holder">
       <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
       <h4>${kit.name}</h4>
+      <h4>$${kit.price}</h4>
       </div>
       `;
       c_itemGroup.appendChild(link);
@@ -158,7 +159,6 @@ function fetchCollection(cButtonContent){{
       const buttonCategory = button.getAttribute('data-category');
       fetchCollection('hot');
       button.addEventListener("click", () => {
-        alert("Clicked!");
         const cButtonContent = buttonCategory;
         console.log("button", button);
         console.log("buttonclick", cButtonContent); 
@@ -202,6 +202,7 @@ function fetchCollection(cButtonContent){{
       <div class="item-holder">
       <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
       <h4>${kit.name}</h4>
+      <h4>$${kit.price}</h4>
       </div> 
       `;
       hotContainer.appendChild(link);
@@ -263,6 +264,7 @@ function fetchCollection(cButtonContent){{
       <div class="item-holder">
       <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
       <h4>${kit.name}</h4>
+      <h4>$${kit.price}</h4>
       </div>
       `;
       newArrivalsContainer.appendChild(link);
@@ -316,6 +318,7 @@ function fetchCollection(cButtonContent){{
       <div class="p-item-holder">
       <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
       <h4>${kit.name}</h4>
+      <h4>$${kit.price}</h4>
       </div>
       `;
       playerKitsContainer.appendChild(link);
@@ -375,6 +378,7 @@ function fetchCollection(cButtonContent){{
           <div class="ak-item">
           <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
           <h4>${kit.name}</h4>
+          <h4>$${kit.price}</h4>
           </div>
           `;
           allKitsContainer.appendChild(link);
@@ -424,6 +428,7 @@ if (searchButton) {
           <div class="ak-item">
           <img src="${kit.image}" alt="${kit.name}" width="200" height="200" />
           <h4>${kit.name}</h4>
+          <h4>$${kit.price}</h4>
           </div>
           `;
           searchResultsContainer.appendChild(link);
@@ -478,9 +483,11 @@ if (searchButton) {
             ${kit.selectedSize ? `<p>Size: ${kit.selectedSize}</p>` : ''}
             ${kit.selectedAddon ? `<p>Addon: ${kit.selectedAddon}</p>` : '<p>Addon: None</p>'}
             <p>Quantity: ${kit.quantity || 1}</p>
-            <button class="remove-btn" data-id="${kit.cartId}">Remove</button>
-            <button class="plus-btn" data-id="${kit._id}">+</button>
-            <button class="minus-btn" data-id="${kit._id}">-</button>
+            <div class="atc-btn-group">
+              <button class="remove-btn" data-id="${kit.cartId}"><img src="images/trash.png" alt="remove" width="20" height="20"></button>
+              <button class="plus-btn" data-id="${kit._id}"><img src="images/plus.png" alt="plus" width="20" height="20"></button>
+              <button class="minus-btn" data-id="${kit._id}"><img src="images/minus.png" alt="minus" width="20" height="20"></button>
+            </div>
           </div>
           </div>
         `;
