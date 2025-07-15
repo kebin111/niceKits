@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalSlides = slides.length;
   const intervalTime = 5000;
 
+  // MODULE: SLIDES
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.classList.remove('active');
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, intervalTime);
   }
 
+  // MODULE: COLLECTIONS
   // COLLECTIONS PAGE SLIDER
   let c_currentSlide = 0;
   const c_slides = document.querySelectorAll('.c-slide');
@@ -173,6 +175,8 @@ function fetchCollection(cButtonContent){{
 
 
   }
+
+  // MODULE: HOT SELECTIONS
   console.log('✅Hot selections');
   // HOT SELECTIONS REQ
   fetch('/api/hot-selections')
@@ -237,6 +241,7 @@ function fetchCollection(cButtonContent){{
       });
   }
 
+  // MODULE NEW ARRIVALS
   // NEW ARRIVALS REQ
   console.log('✅ New arrivals');
   fetch('/api/new-arrivals')
@@ -278,6 +283,7 @@ function fetchCollection(cButtonContent){{
     }
   });
 
+  // MODULE: PLAYER 
   // PLAYER KITS REQ
   const playerName = getPlayerNameFromURL();
 
@@ -332,6 +338,7 @@ function fetchCollection(cButtonContent){{
     }
   });
 }
+  // MODULE: ALL
   // ALL KITS REQ
   const sortDropdown = document.getElementById('ak-dropdownButton');
   if (sortDropdown) {
@@ -445,6 +452,7 @@ if (searchButton) {
 
     console.log('✅ Cart');
 
+    // MODULE: CART
     //  CART 
     fetch('/api/get-cart')
     .then(response => {
@@ -492,23 +500,12 @@ if (searchButton) {
           </div>
         `;
 
-        // for(let i = 0; i < 3; i++){
-        //   if(cart.cart.stock[i] <= 3){
-        //     itemHolder.innerHTML += `
-        //     <p>LIMITED STOCKS LEFT</p>
-        //     `;
-        //     break;
-        //   }
-        // }
-        
         cartItemGroup.appendChild(itemHolder);
       });
 
       // Add event listeners for remove buttons
       document.querySelectorAll('.remove-btn').forEach(button => {
         button.addEventListener('click', function() {
-          //const kitId = this.getAttribute('data-id');
-          //change to cartid instead of kitid
           const cartId = this.getAttribute('data-id');
           removeFromCart(cartId);
         });
@@ -659,7 +656,7 @@ if (searchButton) {
 
 
 
-
+// MODULE: KITINFO
 // ITEM PAGE
 const dropdownLinks = document.querySelectorAll('.dropdown-content a');
 const dropdownButton = document.getElementById('dropdownButton');
@@ -667,6 +664,8 @@ const dropdownButton = document.getElementById('dropdownButton');
 const dropdownLinksB = document.querySelectorAll('.dropdown-content-b a');
 const dropdownButtonB = document.getElementById('dropdownButton-b');
 const dropdownContentB = document.querySelector('.dropdown-content-b');
+
+// MODULE: ALL
 // ALL KITS SORTING
 const akDropdownButton = document.getElementById('ak-dropdownButton');
 const akDropdownContent = document.querySelector('.ak-dropdown-content');
@@ -685,6 +684,7 @@ function getPlayerNameFromURL() {
 
 // Example usage:
 
+// MODULE: KITINFO
 // Function to display kit details on the page
 function displayKitDetails(kit) {
   console.log('✅ Displaying kit details');
