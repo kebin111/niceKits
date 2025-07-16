@@ -1,77 +1,5 @@
-import { showHomeSlides } from "./modules/slide.js";
-import { initCollectionSlider, collect } from "./modules/collection.js";
-import { fetchHotSelections } from "./modules/hot.js";
-import { fetchNewArrivals } from "./modules/newarrival.js";
-import { fetchPlayerKits } from "./modules/player.js";
-import { allKits } from "./modules/all.js";
-import { fetchCart } from "./modules/cart.js";
-console.log('✅ SCRIPT.JS LOADED');
-document.addEventListener("DOMContentLoaded", () => {
-
-  console.log('✅ DOMContentLoaded started');
-  showHomeSlides();
-
-  console.log('✅Collections')
-  initCollectionSlider();
-  collect();
-
-  console.log('✅Hot selections');
-  fetchHotSelections();
-  
-  console.log('✅ New arrivals');
-  fetchNewArrivals();
-
-  console.log('✅ Player kits');
-  fetchPlayerKits();
-
-  console.log('✅ All kits');
-  allKits();
-
-  console.log('✅ Cart');
-  fetchCart();
-  // MODULE: KITINFO
-  // KIT INFO REQ
-  const itemId = getItemIdFromURL();
-  if (itemId) {
-    fetch(`/api/kit-info?id=${itemId}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Kit not found');
-        }
-        return response.json();
-      })
-      .then(kit => {
-        console.log('Kit info fetched:', kit);
-        // Update the page with kit details
-        displayKitDetails(kit);
-      })
-      .catch(error => {
-        console.error('Error fetching kit info:', error);
-        // Handle error (show error message to user)
-      });
-  }
-});
 
 
-// MODULE: KITINFO
-// ITEM PAGE
-const dropdownLinks = document.querySelectorAll('.dropdown-content a');
-const dropdownButton = document.getElementById('dropdownButton');
-
-const dropdownLinksB = document.querySelectorAll('.dropdown-content-b a');
-const dropdownButtonB = document.getElementById('dropdownButton-b');
-const dropdownContentB = document.querySelector('.dropdown-content-b');
-
-// Function to get ID from URL
-function getItemIdFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('id');
-}
-
-// Example usage:
-
-// MODULE: KITINFO
-// Function to display kit details on the page
 function displayKitDetails(kit) {
   console.log('✅ Displaying kit details');
   // Update page elements with kit data based on the actual HTML structure
@@ -161,7 +89,21 @@ function displayKitDetails(kit) {
   console.log('Kit details updated:', kit);
 }
 
-dropdownLinks.forEach(link => {
+// Function to get ID from URL
+function getItemIdFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('id');
+}
+
+function setupDropdowns(){
+
+    const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownLinksB = document.querySelectorAll('.dropdown-content-b a');
+    const dropdownButtonB = document.getElementById('dropdownButton-b');
+    const dropdownContentB = document.querySelector('.dropdown-content-b');
+
+    dropdownLinks.forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault(); // Prevent link navigation
     const selected = this.getAttribute('data-value');
@@ -169,6 +111,7 @@ dropdownLinks.forEach(link => {
     dropdownButton.textContent = selected;
   });
 });
+
 
 dropdownContentB.addEventListener('click', function(e) {
   if(e.target.matches('a[data-value]')){
@@ -178,6 +121,39 @@ dropdownContentB.addEventListener('click', function(e) {
     dropdownButtonB.textContent = selected;
   }
 });
+
+}
+
+
+export function kitInfo(){
+    setupDropdowns();
+    const itemId = getItemIdFromURL();
+  if (itemId) {
+    fetch(`/api/kit-info?id=${itemId}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Kit not found');
+        }
+        return response.json();
+      })
+      .then(kit => {
+        console.log('Kit info fetched:', kit);
+        // Update the page with kit details
+        displayKitDetails(kit);
+      })
+      .catch(error => {
+        console.error('Error fetching kit info:', error);
+        // Handle error (show error message to user)
+      });
+  } else {
+    console.error('No kit ID found in URL');
+  }
+
+
+}
+
+
+
 
 
 
